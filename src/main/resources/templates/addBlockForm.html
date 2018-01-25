@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Entry Form</title>
+</head>
+<body>
+<div id="global">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Block Name</th>
+            <th>Entry Name</th>
+            <th>FPP Number</th>
+            <th>MPP Number</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+        </thead>
+        <th:block th:each="block : ${blockList}">
+            <tr>
+                <td th:text="${block.blockName}"></td>
+                <td th:text="${block.entryName}"></td>
+                <td th:text="${block.FPPNum}"></td>
+                <td th:text="${block.MPPNum}"></td>
+                <td th:text="${block.startDate}"></td>
+                <td th:text="${block.endDate}"></td>
+            </tr>
+        </th:block>
+    </table>
+    <form action="#" th:action="@{/addnewblock}" th:object="${newBlock}" method="post">
+        <fieldset>
+            <legend>Add New Block</legend>
+            <p>
+                <label for="entryList">Select Entry: </label>
+                <select th:field="*{entryName}" id="entryList">
+                    <option th:each="entryName: ${entryNameList}"
+                            th:value="${entryName}" th:text="${entryName}"></option>
+                </select>
+            </p>
+            <p>
+                <label for="blockName">Block Name: </label>
+                <input id="blockName" type="text" th:field="*{blockName}" />
+            </p>
+            <p>
+                <label for="FPPNum">FPP Number: </label>
+                <input id="FPPNum" type="text" th:field="*{FPPNum}" />
+            </p>
+            <p>
+                <label for="MPPNum">MPP Number: </label>
+                <input id="MPPNum" type="text" th:field="*{MPPNum}" />
+            </p>
+            <p>
+                <label for="startDate">End Date: </label>
+                <input id="startDate" type="text" th:field="*{startDate}" />
+            </p>
+            <p>
+                <label for="endDate">End Date: </label>
+                <input id="endDate" type="text" th:field="*{endDate}" />
+            </p>
+            <p>
+                <input id="btnAdd" type="submit" value="Add" />
+            </p>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
